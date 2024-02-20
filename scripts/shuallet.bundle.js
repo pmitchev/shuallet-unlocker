@@ -833,12 +833,9 @@ if (fileUpload) {
         reader.readAsText(file);
     })
 }
-const initWallet = async(loadQR = 0) => {
+const initWallet = async() => {
     if (localStorage.walletAddress && document.getElementById('walletAddress')) {
         document.getElementById('walletAddress').innerText = localStorage?.walletAddress || '';
-        if (loadQR === 1) {
-            var qrcode = new QRCode("qrcode", localStorage.walletAddress);
-        }
         document.getElementsByClassName('backup-wallet')[0].style.display = 'block';
         const balance = await getWalletBalance(localStorage.walletAddress);
         document.getElementById('walletBalance').innerText = `${balance / 100000000} BSV`;
@@ -950,4 +947,4 @@ If so, please ensure your wallet is backed up first!`);
         location.reload();
     }
 }
-initWallet(1);
+initWallet();
